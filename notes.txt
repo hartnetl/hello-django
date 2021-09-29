@@ -118,6 +118,26 @@ Lets login
 LESSON 5 - MODELS
 ############################
 
+https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/b0b40af73cf444e88bc2fd4f385c54b8/?child=first
+
+Models are like excel spreadsheets. 
+
+Database = excel spreadsheet
+Table = one excel sheet
+Common info = sheet headings in first row
+Data entries = subsequent rows
+
+You basically need to replicate this with python
+
+	• Go to models.py in todo
+		○ Create a class, which is like the sheet name in excel
+			    Class Item(models.Model:
+
+		○ Define the attributes that our individual items will have.
+			name = models.CharField(max_length=50, null=False, blank=False)
+            done = models.BooleanField(null=False, blank=False, default=False)
+
+
 ############################
 LESSON 6 - CREATING DATA
 ############################
