@@ -414,6 +414,102 @@ Lets get our form vertical again
                 ''''''''''''''''''''''''''''''''''''
 
 
+Our todolist.html needs a button to allow users to edit
+
+	• Create that button at the end of each item in the for loop
+		<table>
+		        {% for item in items %}
+		            <tr>
+		            {% if item.done %}
+		                <td><strike>{{ item.name }}</strike></td>
+		            {% else %}
+		                <td>{{ item.name }}</td>
+		            {% endif %}
+					
+					# This is the new bit
+		            <td>
+		                <a href="/edit/{{item.id }}">
+		                    <button>Edit</button>
+		                </a>
+		            </td>
+		            
+		            </tr>
+		        {% empty %}
+		        <tr><td>You have nothing to do</td></tr>
+		        {% endfor %}
+		    </table>
+
+Now the buttons need to go somewhere
+
+	• Views.py
+		○ Create edit_item view
+			def edit_item(request, item_id):
+			    return render(request, 'todo/edit_item.html')
+	
+	• Duplicate add_item.html and change page for edit_item.html
+Here is the form
+
+		<form method="POST">
+		        {% csrf_token %}
+		        {{ form.as_p }}
+		
+		        <div>
+		            <p>
+		                <button type="submit">Update Item</button>
+		            </p>
+		        </div>
+		    </form>
+		
+	• Urls.py
+		○ Add a new path
+			§ path('edit/<item_id>', edit_item, name='edit')
+			
+		○ Import from todo.views
+			§ from todo.views import get_todo_list, add_item, edit_item
+
+Our edit button works, but we don't have an edit form yet
+
+	• Views.py
+		○ Update your edit_item view
+			def edit_item(request, item_id):
+			    # Get a copy of the item from the database using a django shortcut
+			    # This searches the database for the clicked item, or returns a 404 
+			    # error if it doesn't exist
+			    item = get_object_or_404(Item, id=item_id)
+			
+			    # instance=item prepoulates the form with the information we just got 
+			    # from the database and stored in the variable item
+			    form = ItemForm(instance=item)
+			    context = {
+			        'form': form
+			    }
+			
+			    return render(request, 'todo/edit_item.html', context)
+			
+		○ Import get_object_or_404 from shortcuts
+			§ from django.shortcuts import render, redirect, get_object_or_404
+
+Our edit form appears but doesn't work because we need a POST handler
+
+	• View.py
+		○ Update your edit_item view with if from add_item, adding in the instance
+			
+
+			def edit_item(request, item_id):
+			    item = get_object_or_404(Item, id=item_id)
+			
+			    if request.method == 'POST':
+			        form = ItemForm(request.POST, instance=item)
+			        if form.is_valid():
+			            form.save()
+			        return redirect('get_todo_list')
+			
+			    form = ItemForm(instance=item)
+			    context = {
+			        'form': form
+			    }
+			
+			    return render(request, 'todo/edit_item.html', context)
 
 
 
