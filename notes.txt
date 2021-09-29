@@ -218,6 +218,7 @@ By now we have a model with items which can be added in the database, but the us
         ''''''''''''''''''''''''''''''''
           PART 2 - RENDERING DATA PT-2
         ''''''''''''''''''''''''''''''''
+        
 This is editing the table in the template todo_list.html
 Let's strike out completed tasks (the if loop) and give the user feedback if the database is empty
 
@@ -240,6 +241,34 @@ Let's strike out completed tasks (the if loop) and give the user feedback if the
         ''''''''''''''''''''''''''''''''''''
           PART 3 - CREATING NEW ITEMS PT-1
         ''''''''''''''''''''''''''''''''''''
+
+CRUD time
+
+We'll give users the option to create new items on the html page
+
+Make a new template for a create new item page and link it up
+
+	• Duplicate html template
+	• Rename it add_item.html
+		○ Customise the new template as needed
+	• Link add_item.html to the todo_list.html page
+		○ <a href="/add">Add an item</a>
+	• Views.py
+		○ Create add_item function
+		
+			def add_item(request):
+			    return render(request, 'todo/add_item.html')
+			
+	• Urls.py
+		○ Add 'add_item' to todo.views import
+			§ from todo.views import get_todo_list, add_item
+		○ Add 'add_item' to urlpatterns
+			§ path('add', add_item, name='add')
+
+Let's add a create button in the new template so users can actually add things
+
+	• Add_item.html
+		○ Create form for users to add items
 
 
 

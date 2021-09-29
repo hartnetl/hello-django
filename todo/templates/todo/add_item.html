@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django todo lesson</title>
+</head>
+
+<body>
+    <h1>Add a to-do item:</h1>
+
+    <!-- the action here is the add url that we'll submit the form to -->
+    <form method="POST" action="add">
+        <!-- This is how a user enters the name, and if its done -->
+        <div>
+            <p>
+                <!-- the name here used to access the inputs value in the view function
+               the id here is to identify it for css etc  -->
+                <label for="id_name">Name: </label>
+                <input type="text" id="id_name" name="item_name">
+            </p>
+        </div>
+
+        <div>
+            <p>
+                <label for="id_done">Done: </label>
+                <input type="checkbox" id="id_done" name="done">
+            </p>
+        </div>
+
+        <div>
+            <p>
+                <button type="submit">Add Item</button>
+            </p>
+        </div>
+    </form>
+
+</body>
+
+</html>
