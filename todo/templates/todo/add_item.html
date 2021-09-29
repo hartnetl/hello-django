@@ -11,9 +11,11 @@
 <body>
     <h1>Add a to-do item:</h1>
 
+    <!-- This form is how a user enters the name, and if its done -->
     <!-- the action here is the add url that we'll submit the form to -->
     <form method="POST" action="add">
-        <!-- This is how a user enters the name, and if its done -->
+        <!-- This is needed to make sure our data is being sent from our app, not a random website -->
+        {% csrf_token %}
         <div>
             <p>
                 <!-- the name here used to access the inputs value in the view function
