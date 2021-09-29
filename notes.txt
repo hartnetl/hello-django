@@ -1,0 +1,89 @@
+############################
+LESSON 1 - GETTING SET UP 
+############################
+
+https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/121ef050096f4546a1c74327a9113ea6/?child=last
+
+Install Django
+
+    * pip3 install django
+
+Create project
+
+    * django-admin startproject my_new_django .
+
+Run project
+
+    * Python3 manage.py runserver
+
+
+
+
+############################
+LESSON 2 - URLs
+############################
+
+https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/685f99dc7b6c41e497b402adbc97dfaa/?child=first
+
+
+db.sqlite3 is our database for the project. DO NOT DELETE OR CHANGE THIS FILE
+
+
+Create your app
+    * python3 manage.py startapp todo
+
+Give your app content
+    Go to views.py in todo folder
+    Create function
+        
+        def say_hello(request):
+            return HttpResponse("Hello!")
+
+Make it visible
+    Go to urls.py
+    import function from views
+
+        from todo.views import say_hello
+
+    Define url to trigger function and return http HttpResponse
+
+        path('hello/', say_hello, name='hello')
+
+View the page
+
+    python3 manage.py run server
+    add hello/ to the end of the url
+    Hey presto, your broswer is saying hello to you
+
+
+############################
+LESSON 3 - TEMPLATES
+############################
+
+https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/ed4360267fc348d8b1113b26c7e7511a/?child=first
+
+
+
+############################
+LESSON 4 - MIGRATIONS AND ADMIN
+############################
+
+############################
+LESSON 5 - MODELS
+############################
+
+############################
+LESSON 6 - CREATING DATA
+############################
+
+############################
+LESSON 7 - MODIFYING DATA
+############################
+
+############################
+LESSON 8 - TESTING
+############################
+
+############################
+LESSON 9 - DEPLOYMENT
+############################
