@@ -63,6 +63,26 @@ LESSON 3 - TEMPLATES
 https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/ed4360267fc348d8b1113b26c7e7511a/?child=first
 
 
+	• Create templates folder in todo
+	• Create todo folder in templates
+  	• Create todo_list.html in todo
+		○ Set up using ! Tab
+		○ Enter some body content
+	• Go back to views.py
+		○ Render template instead of inserting html directly
+			def get_todo_list(request):
+			    return render(request, 'todo/todo_list.html')
+			
+	• Back to urls.py
+		○ Update path
+			§ path('', get_todo_list, name='get_todo_list')
+		○ Change import
+			§ from todo.views import get_todo_list
+			
+	• Settings.py
+        Add todo to INSTALLED APPS
+
+run again and your body content will be visible
 
 ############################
 LESSON 4 - MIGRATIONS AND ADMIN
