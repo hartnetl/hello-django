@@ -519,6 +519,48 @@ Our edit form appears but doesn't work because we need a POST handler
                   PART 3 - TOGGLING/DELETING ITEMS
                 ''''''''''''''''''''''''''''''''''''
 
+
+Let's allow the user to quickly toggle an item's done status
+
+	• Todolist html
+		○ Copy and paste the edit button
+		○ Change edit to toggle
+	• Urls.py
+		○ Copy and paste the edit path
+		○ Change edit to toggle
+	• Views.py
+		○ Create a view for it
+
+			def toggle_item(request, item_id):
+			    item = get_object_or_404(Item, id=item_id)
+			    # This just makes the done status the opposite of what it is now
+			    item.done = not item.done
+			    item.save()
+			    return redirect('get_todo_list')
+			
+Let users delete items
+
+	• Views.py
+		○ Create view for delete_item
+
+			def delete_item(request, item_id):
+			    item = get_object_or_404(Item, id=item_id)
+			    item.delete()
+			    return redirect('get_todo_list')
+			
+	• Urls.py
+		○ Add path
+			§ path('delete/<item_id>', views.delete_item, name='delete')
+	• Todo.html template
+		○ Copy edit button and change for delete
+			 <td>
+			     <a href="/delete/{{item.id }}">
+			          <button>Delete</button>
+			      </a>
+			 </td>
+
+
+
 ############################
 LESSON 8 - TESTING
 ############################

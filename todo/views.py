@@ -32,7 +32,7 @@ def add_item(request):
 
 def edit_item(request, item_id):
     # Get a copy of the item from the database using a django shortcut
-    # This searches the database for the clicked item, or returns a 404 
+    # This searches the database for the clicked item, or returns a 404
     # error if it doesn't exist
     item = get_object_or_404(Item, id=item_id)
 
@@ -42,7 +42,7 @@ def edit_item(request, item_id):
             form.save()
         return redirect('get_todo_list')
 
-    # instance=item prepoulates the form with the information we just got 
+    # instance=item prepoulates the form with the information we just got
     # from the database and stored in the variable item
     form = ItemForm(instance=item)
     context = {
@@ -50,3 +50,17 @@ def edit_item(request, item_id):
     }
 
     return render(request, 'todo/edit_item.html', context)
+
+
+def toggle_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    # This just makes the done status the opposite of what it is now
+    item.done = not item.done
+    item.save()
+    return redirect('get_todo_list')
+
+
+def delete_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    item.delete()
+    return redirect('get_todo_list')
