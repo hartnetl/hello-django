@@ -129,6 +129,8 @@ Data entries = subsequent rows
 
 You basically need to replicate this with python
 
+CREATE THE MODEL 
+
 	• Go to models.py in todo
 		○ Create a class, which is like the sheet name in excel
 			    Class Item(models.Model:
@@ -136,6 +138,36 @@ You basically need to replicate this with python
 		○ Define the attributes that our individual items will have.
 			name = models.CharField(max_length=50, null=False, blank=False)
             done = models.BooleanField(null=False, blank=False, default=False)
+
+
+ADDING DATA
+
+Django uses migrations to handle database operations so lets make a migrations file
+
+	• python3 manage.py makemigrations
+		○ This makes a new file (0001_initial.py) which has code to create the database table based on our model.
+		So this code will be converted to sequel by Django and executed on the database when we actually run the migrations.
+		
+	• python3 manage.py showmigrations
+		○ This shows an unapplied migration for todo
+		
+	• python3 manage.py migrate 
+
+We won't be able to see created items in the admin until they're exposed. Let's do that now
+
+	• Register the new models in the todo apps admin.py file
+		○ from .models import Item
+		○ admin.site.register(Item)
+
+Items is now visible in the todo table, and items can be added.
+But the added items aren't named well, so let's change that
+
+	• Go to models.py
+		○ Go to item class and add this:
+			def __str__(self):
+			        return self.name
+			
+			This overrides the string in the models base class and returns the name we give it instead
 
 
 ############################
