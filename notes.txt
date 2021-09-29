@@ -179,11 +179,62 @@ https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/c
         ''''''''''''''''''''''''''''''''
           PART 1 - RENDERING DATA PT-1
         ''''''''''''''''''''''''''''''''
+    
+By now we have a model with items which can be added in the database, but the user cannot see. Let's work on that
+
+	• Go to views.py
+		○ Import the Item class from models.py
+			 from .models import Item
+
+		○ Update your get_todo_list to query all items in the database
+		
+			def get_todo_list(request):
+			    items = Item.objects.all()
+			    context = {
+			        'items': items
+			    }
+			    return render(request, 'todo/todo_list.html', context)
+			
+	• Go to template file (todo_list.html)
+		○ Render your items from the context dictionary
+			{{ items }}
+
+                If you check your page now you'll get a very user unfriendly query set.
+                A query set is kind of like a list which means we can iterate through it in our template just like we could iterate through a list in Python.
+
+		○ Add a for loop to create a new row for every item in the database and display the name and done status
+			
+				<table>
+			        {% for item in items %}
+			            <tr>
+			                <td>{{ item.name }}</td>
+			                <td>{{ item.done }}</td>
+			            </tr>
+			        {% endfor %}
+                 </table>
+
 
 
         ''''''''''''''''''''''''''''''''
           PART 2 - RENDERING DATA PT-2
         ''''''''''''''''''''''''''''''''
+This is editing the table in the template todo_list.html
+Let's strike out completed tasks (the if loop) and give the user feedback if the database is empty
+
+    		 <table>
+		        {% for item in items %}
+		            <tr>
+		            {% if item.done %}
+		                <td><strike>{{ item.name }}</strike></td>
+		            {% else %}
+		                <td>{{ item.name }}</td>
+		            {% endif %}
+		                
+		            </tr>
+		        {% empty %}
+		            <tr><td>You have nothing to do</td></tr>
+		        {% endfor %}
+            </table>
 
 
         ''''''''''''''''''''''''''''''''''''
@@ -198,7 +249,7 @@ https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/c
 
 
 
-        
+
 ############################
 LESSON 7 - MODIFYING DATA
 ############################
