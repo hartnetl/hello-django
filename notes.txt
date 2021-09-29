@@ -218,7 +218,7 @@ By now we have a model with items which can be added in the database, but the us
         ''''''''''''''''''''''''''''''''
           PART 2 - RENDERING DATA PT-2
         ''''''''''''''''''''''''''''''''
-        
+
 This is editing the table in the template todo_list.html
 Let's strike out completed tasks (the if loop) and give the user feedback if the database is empty
 
@@ -242,7 +242,7 @@ Let's strike out completed tasks (the if loop) and give the user feedback if the
           PART 3 - CREATING NEW ITEMS PT-1
         ''''''''''''''''''''''''''''''''''''
 
-CRUD time
+CRUD time - this handles C and R
 
 We'll give users the option to create new items on the html page
 
@@ -277,11 +277,151 @@ Let's add a create button in the new template so users can actually add things
         ''''''''''''''''''''''''''''''''''''
 
 
+Remember: 
+GET retrieves info from server
+POST adds to the server
+			
+Let's add a security step to the top of the form
+	• {% csrf_token %}
+		○ Csrf = cross-site request forgery token
+		○ This is a randomly generated unique value given to the form as a hidden input field when the form is submitted
+		○ It ensures the data we're posting is actually coming from our todo list app and not another website
+	
+	
+We need to handle what happens when the user clicks the submit button
+
+	• Views.py
+		○ Update the add_item function to handle the post requests.
+          It should create a new item as per the input field and bring the user back to the updated todo list.
+          This means you need to import redirect from django shortcuts
+			
+			def add_item(request):
+			    if request.method == 'POST':
+				        # Get the values entered
+			        name = request.POST.get('item_name')
+			        done = 'done' in request.POST
+			
+			        # Create the new object as per the input fields
+			        Item.objects.create(name=name, done=done)
+			
+			        return redirect('get_todo_list')
+			
+			    return render(request, 'todo/add_item.html')
 
 
 ############################
 LESSON 7 - MODIFYING DATA
 ############################
+
+https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/22da66e7007d4b5a9bd53901c84034e8/?child=first
+
+This handles the U D of CRUD
+
+                ''''''''''''''''''''''''''''''''''''
+                            PART 1 - FORMS
+                ''''''''''''''''''''''''''''''''''''
+
+Django can make and validate forms from the model you provide it.
+
+
+Set up the template for the form 
+
+	• Make forms.py in main todo directory
+	• Set it up as so:
+
+			from django import forms
+			from .models import Item
+			
+			Our form will be a class that inherits a built-in Django class to give it
+			some basic functionality.
+			
+			Set up form by giving it a main class which inherits the functionality of
+			ModelForm
+			class ItemForm(forms.ModelForm):
+			    This inner class tells the form about itself - which fields it should
+			    render, how it should display error messages etc.
+			    class Meta:
+			        model = Item
+			        fields = ['name', 'done']
+			
+	• Off to views.py
+		○ Import the ImportForm class
+			§ from .forms import ItemForm
+		○ Create an instance of the form in add_item
+		Create context
+Return context to template
+			
+			def add_item(request):
+			    # Our post button is to here, so we need to handle that properly
+			    if request.method == 'POST':
+			        # this get the value entered into the input field
+			        name = request.POST.get('item_name')
+			        done = 'done' in request.POST
+			
+			        # Create the new object as per the input fields
+			        Item.objects.create(name=name, done=done)
+			
+			        # bring the user back to the updated todo list
+			        return redirect('get_todo_list')
+			    
+				# Create instance of form
+			    form=ItemForm()
+			    context = {
+			        'form': form
+			    } 
+			    return render(request, 'todo/add_item.html', form)
+
+Get rid of the one you made manually and its associated links
+
+	• Now you can delete the form fields in the add_item template
+		○ In it's place, render the form with jinja
+			<form method="POST" action="add">
+			     {% csrf_token %}
+			        
+			        {{ form }}
+			
+			        <div>
+			            <p>
+			                <button type="submit">Add Item</button>
+			            </p>
+			        </div>
+			
+			    </form>
+		
+	• Go back to views.py to change how you read the field values, since we deleted the form
+		
+		def add_item(request):
+		    # Our post button is to here, so we need to handle that properly
+		    if request.method == 'POST':
+		        form = ItemForm(request.POST)
+		        if form.is_valid():
+		            form.save()
+		        return redirect('get_todo_list')
+		
+
+Lets get our form vertical again
+
+	• Add_item.html
+		○ Use a built-in django method to change table layout
+			§ {{ form.as_p }}
+
+
+
+
+
+                ''''''''''''''''''''''''''''''''''''
+                        PART 2 - EDITING ITEMS
+                ''''''''''''''''''''''''''''''''''''
+
+
+
+
+
+
+
+                ''''''''''''''''''''''''''''''''''''
+                  PART 3 - TOGGLING/DELETING ITEMS
+                ''''''''''''''''''''''''''''''''''''
 
 ############################
 LESSON 8 - TESTING
