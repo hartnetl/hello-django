@@ -1,3 +1,7 @@
+ONE DRIVE NOTEBOOK
+
+https://onedrive.live.com/view.aspx?resid=AD7F40F390B59989%2110781&id=documents
+
 ############################
 LESSON 1 - GETTING SET UP 
 ############################
@@ -87,6 +91,28 @@ run again and your body content will be visible
 ############################
 LESSON 4 - MIGRATIONS AND ADMIN
 ############################
+
+https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/23c1b3c9572a4fc4ad169d67f1ead946/?child=first
+
+
+When we run our python file at the moment we're getting errors regarding migrations. Let's address that.
+
+	• python3  manage.py makemigrations --dry-run
+		○ Shows database changes
+		○ Without the fry run bit this helps convert python code to sql code
+	• python3 manage.py showmigrations
+	• python3 manage.py migrate --plan
+		○ That plan is a flag, to see what it will do
+		○ Run this without the flag to make the changes
+
+Add a way to log in and look at the tables in our database, and make changes if necessary
+	• python3 manage.py createsuperuser
+		○ Create username and password
+	
+Lets login 
+	• Go to preview of site
+	• Add /admin/ to end of url
+    • Enter the details you just created
 
 ############################
 LESSON 5 - MODELS
