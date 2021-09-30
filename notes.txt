@@ -823,6 +823,16 @@ LESSON 9 - DEPLOYMENT
 
 https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/00bc94313a374f519dbec8dfb7ed0fbd/?child=first
 
+		NOTE!
+		If you get the error below during the steps to deployment:
+
+			django.db.utils.OperationalError: FATAL: role "somerandomletters" does not exist
+
+		Please run the following command in the terminal to fix it:
+
+			unset PGHOSTADDR
+
+
 	''''''''''''''''''''''''''''''''''''
 	PART 1 - Heroku setup and CLI
 	''''''''''''''''''''''''''''''''''''
@@ -906,7 +916,21 @@ https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/c
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 	PART 7 - Attempting first deployment
 	'''''''''''''''''''''''''''''''''''''''''''''''''
+			• Git push heroku main
+			• This fails, but it nicely tells us how to ignore/disable this because we don't have static files such as JS
+			• Run the code it tells you to
+				○ heroku config:set DISABLE_COLLECTSTATIC=1
+			• Push to heroku again
+			• It works, but when we follow the URL ( https://hello-django-todo-app-by-laura.herokuapp.com/) we get an error
+			• Run the command they tell you to
+				○ heroku logs --tail
+					§ Our error messages is Heroku error h14
+					○ We haven't told unicorn to start. Let's make our procfile and do that
 
+		Create Procfile file in main root
+			• web: gunicorn my_new_django.wsgi:application
+
+		Push to heroku again(git push heroku master)
 
 
 	'''''''''''''''''''''''''''''''''''''''''''''''''
