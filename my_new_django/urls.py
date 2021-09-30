@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 # This is too long, let's make a shorter version, and add views. to each path
-# from todo.views import get_todo_list, add_item, edit_item, toggle 
+# from todo.views import get_todo_list, add_item, edit_item, toggle
 from todo import views
 
 urlpatterns = [

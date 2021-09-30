@@ -6,169 +6,164 @@ https://onedrive.live.com/view.aspx?resid=AD7F40F390B59989%2110781&id=documents
 LESSON 1 - GETTING SET UP 
 ############################
 
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/121ef050096f4546a1c74327a9113ea6/?child=last
+	https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/121ef050096f4546a1c74327a9113ea6/?child=last
 
-Install Django
+	Install Django
 
-    * pip3 install django
+		* pip3 install django
 
-Create project
+	Create project
 
-    * django-admin startproject my_new_django .
+		* django-admin startproject my_new_django .
 
-Run project
+	Run project
 
-    * Python3 manage.py runserver
-
-
-
+		* Python3 manage.py runserver
 
 ############################
 LESSON 2 - URLs
 ############################
 
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/685f99dc7b6c41e497b402adbc97dfaa/?child=first
+	https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/685f99dc7b6c41e497b402adbc97dfaa/?child=first
 
 
-db.sqlite3 is our database for the project. DO NOT DELETE OR CHANGE THIS FILE
+	db.sqlite3 is our database for the project. DO NOT DELETE OR CHANGE THIS FILE
 
 
-Create your app
-    * python3 manage.py startapp todo
+	Create your app
+		* python3 manage.py startapp todo
 
-Give your app content
-    Go to views.py in todo folder
-    Create function
-        
-        def say_hello(request):
-            return HttpResponse("Hello!")
+	Give your app content
+		Go to views.py in todo folder
+		Create function
+			
+			def say_hello(request):
+				return HttpResponse("Hello!")
 
-Make it visible
-    Go to urls.py
-    import function from views
+	Make it visible
+		Go to urls.py
+		import function from views
 
-        from todo.views import say_hello
+			from todo.views import say_hello
 
-    Define url to trigger function and return http HttpResponse
+		Define url to trigger function and return http HttpResponse
 
-        path('hello/', say_hello, name='hello')
+			path('hello/', say_hello, name='hello')
 
-View the page
+	View the page
 
-    python3 manage.py run server
-    add hello/ to the end of the url
-    Hey presto, your broswer is saying hello to you
-
+		python3 manage.py run server
+		add hello/ to the end of the url
+		Hey presto, your broswer is saying hello to you
 
 ############################
 LESSON 3 - TEMPLATES
 ############################
 
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/ed4360267fc348d8b1113b26c7e7511a/?child=first
+	https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/ed4360267fc348d8b1113b26c7e7511a/?child=first
 
 
-	• Create templates folder in todo
-	• Create todo folder in templates
-  	• Create todo_list.html in todo
-		○ Set up using ! Tab
-		○ Enter some body content
-	• Go back to views.py
-		○ Render template instead of inserting html directly
-			def get_todo_list(request):
-			    return render(request, 'todo/todo_list.html')
-			
-	• Back to urls.py
-		○ Update path
-			§ path('', get_todo_list, name='get_todo_list')
-		○ Change import
-			§ from todo.views import get_todo_list
-			
-	• Settings.py
-        Add todo to INSTALLED APPS
+		• Create templates folder in todo
+		• Create todo folder in templates
+		• Create todo_list.html in todo
+			○ Set up using ! Tab
+			○ Enter some body content
+		• Go back to views.py
+			○ Render template instead of inserting html directly
+				def get_todo_list(request):
+					return render(request, 'todo/todo_list.html')
+				
+		• Back to urls.py
+			○ Update path
+				§ path('', get_todo_list, name='get_todo_list')
+			○ Change import
+				§ from todo.views import get_todo_list
+				
+		• Settings.py
+			Add todo to INSTALLED APPS
 
-run again and your body content will be visible
+	run again and your body content will be visible
 
 ############################
 LESSON 4 - MIGRATIONS AND ADMIN
 ############################
 
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/23c1b3c9572a4fc4ad169d67f1ead946/?child=first
+	https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/23c1b3c9572a4fc4ad169d67f1ead946/?child=first
 
 
-When we run our python file at the moment we're getting errors regarding migrations. Let's address that.
+	When we run our python file at the moment we're getting errors regarding migrations. Let's address that.
 
-	• python3  manage.py makemigrations --dry-run
-		○ Shows database changes
-		○ Without the fry run bit this helps convert python code to sql code
-	• python3 manage.py showmigrations
-	• python3 manage.py migrate --plan
-		○ That plan is a flag, to see what it will do
-		○ Run this without the flag to make the changes
+		• python3  manage.py makemigrations --dry-run
+			○ Shows database changes
+			○ Without the fry run bit this helps convert python code to sql code
+		• python3 manage.py showmigrations
+		• python3 manage.py migrate --plan
+			○ That plan is a flag, to see what it will do
+			○ Run this without the flag to make the changes
 
-Add a way to log in and look at the tables in our database, and make changes if necessary
-	• python3 manage.py createsuperuser
-		○ Create username and password
-	
-Lets login 
-	• Go to preview of site
-	• Add /admin/ to end of url
-    • Enter the details you just created
+	Add a way to log in and look at the tables in our database, and make changes if necessary
+		• python3 manage.py createsuperuser
+			○ Create username and password
+		
+	Lets login 
+		• Go to preview of site
+		• Add /admin/ to end of url
+		• Enter the details you just created
 
 ############################
 LESSON 5 - MODELS
 ############################
 
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/b0b40af73cf444e88bc2fd4f385c54b8/?child=first
+	https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/b0b40af73cf444e88bc2fd4f385c54b8/?child=first
 
-Models are like excel spreadsheets. 
+	Models are like excel spreadsheets. 
 
-Database = excel spreadsheet
-Table = one excel sheet
-Common info = sheet headings in first row
-Data entries = subsequent rows
+	Database = excel spreadsheet
+	Table = one excel sheet
+	Common info = sheet headings in first row
+	Data entries = subsequent rows
 
-You basically need to replicate this with python
+	You basically need to replicate this with python
 
-CREATE THE MODEL 
+	CREATE THE MODEL 
 
-	• Go to models.py in todo
-		○ Create a class, which is like the sheet name in excel
-			    Class Item(models.Model:
+		• Go to models.py in todo
+			○ Create a class, which is like the sheet name in excel
+					Class Item(models.Model:
 
-		○ Define the attributes that our individual items will have.
-			name = models.CharField(max_length=50, null=False, blank=False)
-            done = models.BooleanField(null=False, blank=False, default=False)
+			○ Define the attributes that our individual items will have.
+				name = models.CharField(max_length=50, null=False, blank=False)
+				done = models.BooleanField(null=False, blank=False, default=False)
 
 
-ADDING DATA
+	ADDING DATA
 
-Django uses migrations to handle database operations so lets make a migrations file
+	Django uses migrations to handle database operations so lets make a migrations file
 
-	• python3 manage.py makemigrations
-		○ This makes a new file (0001_initial.py) which has code to create the database table based on our model.
-		So this code will be converted to sequel by Django and executed on the database when we actually run the migrations.
-		
-	• python3 manage.py showmigrations
-		○ This shows an unapplied migration for todo
-		
-	• python3 manage.py migrate 
-
-We won't be able to see created items in the admin until they're exposed. Let's do that now
-
-	• Register the new models in the todo apps admin.py file
-		○ from .models import Item
-		○ admin.site.register(Item)
-
-Items is now visible in the todo table, and items can be added.
-But the added items aren't named well, so let's change that
-
-	• Go to models.py
-		○ Go to item class and add this:
-			def __str__(self):
-			        return self.name
+		• python3 manage.py makemigrations
+			○ This makes a new file (0001_initial.py) which has code to create the database table based on our model.
+			So this code will be converted to sequel by Django and executed on the database when we actually run the migrations.
 			
-			This overrides the string in the models base class and returns the name we give it instead
+		• python3 manage.py showmigrations
+			○ This shows an unapplied migration for todo
+			
+		• python3 manage.py migrate 
 
+	We won't be able to see created items in the admin until they're exposed. Let's do that now
+
+		• Register the new models in the todo apps admin.py file
+			○ from .models import Item
+			○ admin.site.register(Item)
+
+	Items is now visible in the todo table, and items can be added.
+	But the added items aren't named well, so let's change that
+
+		• Go to models.py
+			○ Go to item class and add this:
+				def __str__(self):
+						return self.name
+				
+				This overrides the string in the models base class and returns the name we give it instead
 
 ############################
 LESSON 6 - CREATING DATA
@@ -176,137 +171,135 @@ LESSON 6 - CREATING DATA
 
 https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/0f7b131474fe4ba3a4eec2c159ea463f/?child=first
 
-        ''''''''''''''''''''''''''''''''
-          PART 1 - RENDERING DATA PT-1
-        ''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''
+  PART 1 - RENDERING DATA PT-1
+''''''''''''''''''''''''''''''''
     
-By now we have a model with items which can be added in the database, but the user cannot see. Let's work on that
+	By now we have a model with items which can be added in the database, but the user cannot see. Let's work on that
 
-	• Go to views.py
-		○ Import the Item class from models.py
-			 from .models import Item
+		• Go to views.py
+			○ Import the Item class from models.py
+				from .models import Item
 
-		○ Update your get_todo_list to query all items in the database
-		
-			def get_todo_list(request):
-			    items = Item.objects.all()
-			    context = {
-			        'items': items
-			    }
-			    return render(request, 'todo/todo_list.html', context)
+			○ Update your get_todo_list to query all items in the database
 			
-	• Go to template file (todo_list.html)
-		○ Render your items from the context dictionary
-			{{ items }}
+				def get_todo_list(request):
+					items = Item.objects.all()
+					context = {
+						'items': items
+					}
+					return render(request, 'todo/todo_list.html', context)
+				
+		• Go to template file (todo_list.html)
+			○ Render your items from the context dictionary
+				{{ items }}
 
-                If you check your page now you'll get a very user unfriendly query set.
-                A query set is kind of like a list which means we can iterate through it in our template just like we could iterate through a list in Python.
+					If you check your page now you'll get a very user unfriendly query set.
+					A query set is kind of like a list which means we can iterate through it in our template just like we could iterate through a list in Python.
 
-		○ Add a for loop to create a new row for every item in the database and display the name and done status
-			
+			○ Add a for loop to create a new row for every item in the database and display the name and done status
+				
+					<table>
+						{% for item in items %}
+							<tr>
+								<td>{{ item.name }}</td>
+								<td>{{ item.done }}</td>
+							</tr>
+						{% endfor %}
+					</table>
+
+
+''''''''''''''''''''''''''''''''
+  PART 2 - RENDERING DATA PT-2
+''''''''''''''''''''''''''''''''
+
+	This is editing the table in the template todo_list.html
+	Let's strike out completed tasks (the if loop) and give the user feedback if the database is empty
+
 				<table>
-			        {% for item in items %}
-			            <tr>
-			                <td>{{ item.name }}</td>
-			                <td>{{ item.done }}</td>
-			            </tr>
-			        {% endfor %}
-                 </table>
+					{% for item in items %}
+						<tr>
+						{% if item.done %}
+							<td><strike>{{ item.name }}</strike></td>
+						{% else %}
+							<td>{{ item.name }}</td>
+						{% endif %}
+							
+						</tr>
+					{% empty %}
+						<tr><td>You have nothing to do</td></tr>
+					{% endfor %}
+				</table>
 
 
+''''''''''''''''''''''''''''''''''''
+  PART 3 - CREATING NEW ITEMS PT-1
+''''''''''''''''''''''''''''''''''''
 
-        ''''''''''''''''''''''''''''''''
-          PART 2 - RENDERING DATA PT-2
-        ''''''''''''''''''''''''''''''''
+	CRUD time - this handles C and R
 
-This is editing the table in the template todo_list.html
-Let's strike out completed tasks (the if loop) and give the user feedback if the database is empty
+	We'll give users the option to create new items on the html page
 
-    		 <table>
-		        {% for item in items %}
-		            <tr>
-		            {% if item.done %}
-		                <td><strike>{{ item.name }}</strike></td>
-		            {% else %}
-		                <td>{{ item.name }}</td>
-		            {% endif %}
-		                
-		            </tr>
-		        {% empty %}
-		            <tr><td>You have nothing to do</td></tr>
-		        {% endfor %}
-            </table>
+	Make a new template for a create new item page and link it up
+
+		• Duplicate html template
+		• Rename it add_item.html
+			○ Customise the new template as needed
+		• Link add_item.html to the todo_list.html page
+			○ <a href="/add">Add an item</a>
+		• Views.py
+			○ Create add_item function
+			
+				def add_item(request):
+					return render(request, 'todo/add_item.html')
+				
+		• Urls.py
+			○ Add 'add_item' to todo.views import
+				§ from todo.views import get_todo_list, add_item
+			○ Add 'add_item' to urlpatterns
+				§ path('add', add_item, name='add')
+
+	Let's add a create button in the new template so users can actually add things
+
+		• Add_item.html
+			○ Create form for users to add items
 
 
-        ''''''''''''''''''''''''''''''''''''
-          PART 3 - CREATING NEW ITEMS PT-1
-        ''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''
+  PART 4 - CREATING NEW ITEMS PT-2
+''''''''''''''''''''''''''''''''''''
 
-CRUD time - this handles C and R
 
-We'll give users the option to create new items on the html page
-
-Make a new template for a create new item page and link it up
-
-	• Duplicate html template
-	• Rename it add_item.html
-		○ Customise the new template as needed
-	• Link add_item.html to the todo_list.html page
-		○ <a href="/add">Add an item</a>
-	• Views.py
-		○ Create add_item function
+	Remember: 
+	GET retrieves info from server
+	POST adds to the server
+				
+	Let's add a security step to the top of the form
+		• {% csrf_token %}
+			○ Csrf = cross-site request forgery token
+			○ This is a randomly generated unique value given to the form as a hidden input field when the form is submitted
+			○ It ensures the data we're posting is actually coming from our todo list app and not another website
 		
-			def add_item(request):
-			    return render(request, 'todo/add_item.html')
-			
-	• Urls.py
-		○ Add 'add_item' to todo.views import
-			§ from todo.views import get_todo_list, add_item
-		○ Add 'add_item' to urlpatterns
-			§ path('add', add_item, name='add')
+		
+	We need to handle what happens when the user clicks the submit button
 
-Let's add a create button in the new template so users can actually add things
-
-	• Add_item.html
-		○ Create form for users to add items
-
-
-
-        ''''''''''''''''''''''''''''''''''''
-          PART 4 - CREATING NEW ITEMS PT-2
-        ''''''''''''''''''''''''''''''''''''
-
-
-Remember: 
-GET retrieves info from server
-POST adds to the server
-			
-Let's add a security step to the top of the form
-	• {% csrf_token %}
-		○ Csrf = cross-site request forgery token
-		○ This is a randomly generated unique value given to the form as a hidden input field when the form is submitted
-		○ It ensures the data we're posting is actually coming from our todo list app and not another website
-	
-	
-We need to handle what happens when the user clicks the submit button
-
-	• Views.py
-		○ Update the add_item function to handle the post requests.
-          It should create a new item as per the input field and bring the user back to the updated todo list.
-          This means you need to import redirect from django shortcuts
-			
-			def add_item(request):
-			    if request.method == 'POST':
-				        # Get the values entered
-			        name = request.POST.get('item_name')
-			        done = 'done' in request.POST
-			
-			        # Create the new object as per the input fields
-			        Item.objects.create(name=name, done=done)
-			
-			        return redirect('get_todo_list')
-			
-			    return render(request, 'todo/add_item.html')
+		• Views.py
+			○ Update the add_item function to handle the post requests.
+			It should create a new item as per the input field and bring the user back to the updated todo list.
+			This means you need to import redirect from django shortcuts
+				
+				def add_item(request):
+					if request.method == 'POST':
+							# Get the values entered
+						name = request.POST.get('item_name')
+						done = 'done' in request.POST
+				
+						# Create the new object as per the input fields
+						Item.objects.create(name=name, done=done)
+				
+						return redirect('get_todo_list')
+				
+					return render(request, 'todo/add_item.html')
 
 
 ############################
@@ -317,253 +310,349 @@ https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/c
 
 This handles the U D of CRUD
 
-                ''''''''''''''''''''''''''''''''''''
-                            PART 1 - FORMS
-                ''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''
+         PART 1 - FORMS
+''''''''''''''''''''''''''''''''''''
 
-Django can make and validate forms from the model you provide it.
+	Django can make and validate forms from the model you provide it.
 
 
-Set up the template for the form 
+	Set up the template for the form 
 
-	• Make forms.py in main todo directory
-	• Set it up as so:
+		• Make forms.py in main todo directory
+		• Set it up as so:
 
-			from django import forms
-			from .models import Item
+				from django import forms
+				from .models import Item
+				
+				Our form will be a class that inherits a built-in Django class to give it
+				some basic functionality.
+				
+				Set up form by giving it a main class which inherits the functionality of
+				ModelForm
+				class ItemForm(forms.ModelForm):
+					This inner class tells the form about itself - which fields it should
+					render, how it should display error messages etc.
+					class Meta:
+						model = Item
+						fields = ['name', 'done']
+				
+		• Off to views.py
+			○ Import the ImportForm class
+				§ from .forms import ItemForm
+			○ Create an instance of the form in add_item
+			Create context
+	Return context to template
+				
+				def add_item(request):
+					# Our post button is to here, so we need to handle that properly
+					if request.method == 'POST':
+						# this get the value entered into the input field
+						name = request.POST.get('item_name')
+						done = 'done' in request.POST
+				
+						# Create the new object as per the input fields
+						Item.objects.create(name=name, done=done)
+				
+						# bring the user back to the updated todo list
+						return redirect('get_todo_list')
+					
+					# Create instance of form
+					form=ItemForm()
+					context = {
+						'form': form
+					} 
+					return render(request, 'todo/add_item.html', form)
+
+	Get rid of the one you made manually and its associated links
+
+		• Now you can delete the form fields in the add_item template
+			○ In it's place, render the form with jinja
+				<form method="POST" action="add">
+					{% csrf_token %}
+						
+						{{ form }}
+				
+						<div>
+							<p>
+								<button type="submit">Add Item</button>
+							</p>
+						</div>
+				
+					</form>
 			
-			Our form will be a class that inherits a built-in Django class to give it
-			some basic functionality.
-			
-			Set up form by giving it a main class which inherits the functionality of
-			ModelForm
-			class ItemForm(forms.ModelForm):
-			    This inner class tells the form about itself - which fields it should
-			    render, how it should display error messages etc.
-			    class Meta:
-			        model = Item
-			        fields = ['name', 'done']
-			
-	• Off to views.py
-		○ Import the ImportForm class
-			§ from .forms import ItemForm
-		○ Create an instance of the form in add_item
-		Create context
-Return context to template
+		• Go back to views.py to change how you read the field values, since we deleted the form
 			
 			def add_item(request):
-			    # Our post button is to here, so we need to handle that properly
-			    if request.method == 'POST':
-			        # this get the value entered into the input field
-			        name = request.POST.get('item_name')
-			        done = 'done' in request.POST
+				# Our post button is to here, so we need to handle that properly
+				if request.method == 'POST':
+					form = ItemForm(request.POST)
+					if form.is_valid():
+						form.save()
+					return redirect('get_todo_list')
 			
-			        # Create the new object as per the input fields
-			        Item.objects.create(name=name, done=done)
-			
-			        # bring the user back to the updated todo list
-			        return redirect('get_todo_list')
-			    
-				# Create instance of form
-			    form=ItemForm()
-			    context = {
-			        'form': form
-			    } 
-			    return render(request, 'todo/add_item.html', form)
 
-Get rid of the one you made manually and its associated links
+	Lets get our form vertical again
 
-	• Now you can delete the form fields in the add_item template
-		○ In it's place, render the form with jinja
-			<form method="POST" action="add">
-			     {% csrf_token %}
-			        
-			        {{ form }}
-			
-			        <div>
-			            <p>
-			                <button type="submit">Add Item</button>
-			            </p>
-			        </div>
-			
-			    </form>
+		• Add_item.html
+			○ Use a built-in django method to change table layout
+				§ {{ form.as_p }}
+
+
+''''''''''''''''''''''''''''''''''''
+      PART 2 - EDITING ITEMS
+''''''''''''''''''''''''''''''''''''
+
+
+	Our todolist.html needs a button to allow users to edit
+
+		• Create that button at the end of each item in the for loop
+			<table>
+					{% for item in items %}
+						<tr>
+						{% if item.done %}
+							<td><strike>{{ item.name }}</strike></td>
+						{% else %}
+							<td>{{ item.name }}</td>
+						{% endif %}
+						
+						# This is the new bit
+						<td>
+							<a href="/edit/{{item.id }}">
+								<button>Edit</button>
+							</a>
+						</td>
+						
+						</tr>
+					{% empty %}
+					<tr><td>You have nothing to do</td></tr>
+					{% endfor %}
+				</table>
+
+	Now the buttons need to go somewhere
+
+		• Views.py
+			○ Create edit_item view
+				def edit_item(request, item_id):
+					return render(request, 'todo/edit_item.html')
 		
-	• Go back to views.py to change how you read the field values, since we deleted the form
-		
-		def add_item(request):
-		    # Our post button is to here, so we need to handle that properly
-		    if request.method == 'POST':
-		        form = ItemForm(request.POST)
-		        if form.is_valid():
-		            form.save()
-		        return redirect('get_todo_list')
-		
+		• Duplicate add_item.html and change page for edit_item.html
+	Here is the form
 
-Lets get our form vertical again
-
-	• Add_item.html
-		○ Use a built-in django method to change table layout
-			§ {{ form.as_p }}
-
-
-
-
-
-                ''''''''''''''''''''''''''''''''''''
-                        PART 2 - EDITING ITEMS
-                ''''''''''''''''''''''''''''''''''''
-
-
-Our todolist.html needs a button to allow users to edit
-
-	• Create that button at the end of each item in the for loop
-		<table>
-		        {% for item in items %}
-		            <tr>
-		            {% if item.done %}
-		                <td><strike>{{ item.name }}</strike></td>
-		            {% else %}
-		                <td>{{ item.name }}</td>
-		            {% endif %}
-					
-					# This is the new bit
-		            <td>
-		                <a href="/edit/{{item.id }}">
-		                    <button>Edit</button>
-		                </a>
-		            </td>
-		            
-		            </tr>
-		        {% empty %}
-		        <tr><td>You have nothing to do</td></tr>
-		        {% endfor %}
-		    </table>
-
-Now the buttons need to go somewhere
-
-	• Views.py
-		○ Create edit_item view
-			def edit_item(request, item_id):
-			    return render(request, 'todo/edit_item.html')
-	
-	• Duplicate add_item.html and change page for edit_item.html
-Here is the form
-
-		<form method="POST">
-		        {% csrf_token %}
-		        {{ form.as_p }}
-		
-		        <div>
-		            <p>
-		                <button type="submit">Update Item</button>
-		            </p>
-		        </div>
-		    </form>
-		
-	• Urls.py
-		○ Add a new path
-			§ path('edit/<item_id>', edit_item, name='edit')
+			<form method="POST">
+					{% csrf_token %}
+					{{ form.as_p }}
 			
-		○ Import from todo.views
-			§ from todo.views import get_todo_list, add_item, edit_item
-
-Our edit button works, but we don't have an edit form yet
-
-	• Views.py
-		○ Update your edit_item view
-			def edit_item(request, item_id):
-			    # Get a copy of the item from the database using a django shortcut
-			    # This searches the database for the clicked item, or returns a 404 
-			    # error if it doesn't exist
-			    item = get_object_or_404(Item, id=item_id)
+					<div>
+						<p>
+							<button type="submit">Update Item</button>
+						</p>
+					</div>
+				</form>
 			
-			    # instance=item prepoulates the form with the information we just got 
-			    # from the database and stored in the variable item
-			    form = ItemForm(instance=item)
-			    context = {
-			        'form': form
-			    }
-			
-			    return render(request, 'todo/edit_item.html', context)
-			
-		○ Import get_object_or_404 from shortcuts
-			§ from django.shortcuts import render, redirect, get_object_or_404
+		• Urls.py
+			○ Add a new path
+				§ path('edit/<item_id>', edit_item, name='edit')
+				
+			○ Import from todo.views
+				§ from todo.views import get_todo_list, add_item, edit_item
 
-Our edit form appears but doesn't work because we need a POST handler
+	Our edit button works, but we don't have an edit form yet
 
-	• View.py
-		○ Update your edit_item view with if from add_item, adding in the instance
-			
+		• Views.py
+			○ Update your edit_item view
+				def edit_item(request, item_id):
+					# Get a copy of the item from the database using a django shortcut
+					# This searches the database for the clicked item, or returns a 404 
+					# error if it doesn't exist
+					item = get_object_or_404(Item, id=item_id)
+				
+					# instance=item prepoulates the form with the information we just got 
+					# from the database and stored in the variable item
+					form = ItemForm(instance=item)
+					context = {
+						'form': form
+					}
+				
+					return render(request, 'todo/edit_item.html', context)
+				
+			○ Import get_object_or_404 from shortcuts
+				§ from django.shortcuts import render, redirect, get_object_or_404
 
-			def edit_item(request, item_id):
-			    item = get_object_or_404(Item, id=item_id)
-			
-			    if request.method == 'POST':
-			        form = ItemForm(request.POST, instance=item)
-			        if form.is_valid():
-			            form.save()
-			        return redirect('get_todo_list')
-			
-			    form = ItemForm(instance=item)
-			    context = {
-			        'form': form
-			    }
-			
-			    return render(request, 'todo/edit_item.html', context)
+	Our edit form appears but doesn't work because we need a POST handler
+
+		• View.py
+			○ Update your edit_item view with if from add_item, adding in the instance
+				
+
+				def edit_item(request, item_id):
+					item = get_object_or_404(Item, id=item_id)
+				
+					if request.method == 'POST':
+						form = ItemForm(request.POST, instance=item)
+						if form.is_valid():
+							form.save()
+						return redirect('get_todo_list')
+				
+					form = ItemForm(instance=item)
+					context = {
+						'form': form
+					}
+				
+					return render(request, 'todo/edit_item.html', context)
 
 
+''''''''''''''''''''''''''''''''''''
+  PART 3 - TOGGLING/DELETING ITEMS
+''''''''''''''''''''''''''''''''''''
 
 
+	Let's allow the user to quickly toggle an item's done status
 
-                ''''''''''''''''''''''''''''''''''''
-                  PART 3 - TOGGLING/DELETING ITEMS
-                ''''''''''''''''''''''''''''''''''''
+		• Todolist html
+			○ Copy and paste the edit button
+			○ Change edit to toggle
+		• Urls.py
+			○ Copy and paste the edit path
+			○ Change edit to toggle
+		• Views.py
+			○ Create a view for it
 
+				def toggle_item(request, item_id):
+					item = get_object_or_404(Item, id=item_id)
+					# This just makes the done status the opposite of what it is now
+					item.done = not item.done
+					item.save()
+					return redirect('get_todo_list')
+				
+	Let users delete items
 
-Let's allow the user to quickly toggle an item's done status
+		• Views.py
+			○ Create view for delete_item
 
-	• Todolist html
-		○ Copy and paste the edit button
-		○ Change edit to toggle
-	• Urls.py
-		○ Copy and paste the edit path
-		○ Change edit to toggle
-	• Views.py
-		○ Create a view for it
-
-			def toggle_item(request, item_id):
-			    item = get_object_or_404(Item, id=item_id)
-			    # This just makes the done status the opposite of what it is now
-			    item.done = not item.done
-			    item.save()
-			    return redirect('get_todo_list')
-			
-Let users delete items
-
-	• Views.py
-		○ Create view for delete_item
-
-			def delete_item(request, item_id):
-			    item = get_object_or_404(Item, id=item_id)
-			    item.delete()
-			    return redirect('get_todo_list')
-			
-	• Urls.py
-		○ Add path
-			§ path('delete/<item_id>', views.delete_item, name='delete')
-	• Todo.html template
-		○ Copy edit button and change for delete
-			 <td>
-			     <a href="/delete/{{item.id }}">
-			          <button>Delete</button>
-			      </a>
-			 </td>
-
+				def delete_item(request, item_id):
+					item = get_object_or_404(Item, id=item_id)
+					item.delete()
+					return redirect('get_todo_list')
+				
+		• Urls.py
+			○ Add path
+				§ path('delete/<item_id>', views.delete_item, name='delete')
+		• Todo.html template
+			○ Copy edit button and change for delete
+				<td>
+					<a href="/delete/{{item.id }}">
+						<button>Delete</button>
+					</a>
+				</td>
 
 
 ############################
 LESSON 8 - TESTING
 ############################
+
+
+''''''''''''''''''''''''''''''''''''
+	PART 1 - Django testing
+''''''''''''''''''''''''''''''''''''
+
+	https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/5666926980b74689b37a0d5da3cec510/
+
+	When you create an app with django, it automatically supplies you with a tests.py file
+	In it TestCase is imported, which is an extension of Pythons unittest
+
+	When testing, your results will be given as a . for pass, F for a failed test and an E for an error. 
+	If you run 4 tests, they are delivered like so : ".FEF"  with more details to follow
+
+	Run test in terminal with 
+		python3 manage.py test
+
+
+''''''''''''''''''''''''''''''''''''
+ 	PART 2 - TESTING FORMS
+''''''''''''''''''''''''''''''''''''
+	https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/5666926980b74689b37a0d5da3cec510/
+
+	Run all tests with 
+	• Python3 manage.py test
+
+	Run specific file tests with
+	• python3 manage.py test todo.test_forms
+
+	Run specific class test
+	• python3 manage.py test todo.test_forms.TestItemForm
+
+	Run specific test within a class
+	• python3 manage.py test todo.test_forms.TestItemForm.test_fields_are_explicit_in_form_metaclass
+
+
+	For forms you can test if required fields are empty, ensure not required fields actually aren't required and ensure the right fields are being displayed
+
+
+	Example form as test_forms.py
+
+			from django.test import TestCase
+			from .forms import ItemForm
+
+			# Create your tests here.
+
+
+			class TestItemForm(TestCase):
+
+				def test_item_name_is_required(self):
+					# We're will test that the form is not valid, the error occurred on
+					# the name field and the specific error message is what we expect :
+
+					# instantiate a form without a name to simulate a user not filling in their name
+					form = ItemForm({'name': ''})
+
+					# the form shouldn't be valid because no name is entered, so assertFalse is used
+					self.assertFalse(form.is_valid())
+
+					# When the form is invalid it should also send back a dictionary of fields on which there 
+					were errors and the associated error messages
+					# This assertIn tells if there's a name key in the dictionary of form errors
+					self.assertIn('name', form.errors.keys())
+
+					# assert equal is used to check whether the error message on the name field is "this field is required"
+					self.assertEqual(form.errors['name'][0], 'This field is required.')
+
+				def test_done_field_is_not_required(self):
+					# Make a form with only a name
+					form = ItemForm({'name': 'Test Todo Item'})
+
+					# Test the form is valid
+					self.assertTrue(form.is_valid())
+
+				def test_fields_are_explicit_in_form_metaclass(self):
+					# we don't want fields being accidentally displayed, so we need to make sure the only ones being
+					# displayed are written into the metaclass
+
+					# We only need to instantiate an empty form
+					form = ItemForm() 
+					
+					# use assert equal to check meta fields equal to the list given
+					self.assertEqual(form.Meta.fields, ['name', 'done'])
+
+
+''''''''''''''''''''''''''''''''''''
+	PART 3 - TESTING VIEWS
+''''''''''''''''''''''''''''''''''''
+
+	https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/courseware/dc049b343a9b474f8d75822c5fda1582/5666926980b74689b37a0d5da3cec510/
+
+	
+
+''''''''''''''''''''''''''''''''''''
+  	PART 4 - TESTING MODELS
+''''''''''''''''''''''''''''''''''''
+
+
+''''''''''''''''''''''''''''''''''''
+	PART 5 - COVERAGE
+''''''''''''''''''''''''''''''''''''
+
+
 
 ############################
 LESSON 9 - DEPLOYMENT
