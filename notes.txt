@@ -855,15 +855,6 @@ https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/c
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 	PART 4 - Creating new database on Heroku
 	'''''''''''''''''''''''''''''''''''''''''''''''''
-		NOTE!
-		If you get the error below during the steps to deployment:
-
-			django.db.utils.OperationalError: FATAL: role "somerandomletters" does not exist
-
-		Please run the following command in the terminal to fix it:
-
-			unset PGHOSTADDR
-
 
 		Set up postgres through heroku resources
 
@@ -916,7 +907,7 @@ https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/c
 	PART 7 - Attempting first deployment
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 
-		
+
 
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 	PART 8 - fix ALLOWED_HOST and run project
