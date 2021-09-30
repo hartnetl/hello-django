@@ -953,12 +953,35 @@ https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/c
 	''''''''''''''''''''''''''''''''''''
 
 		Change to Django versions requires an extra line of code
-		
+
 		In this video, the os.environ.get() method is introduced to call your environment variables stored in the Gitpod environment. In the version of django that this was recorded in, this works because Django still uses import os at the top of its settings.py file, importing the os module that you need to use.
 
 		Newer versions of Django no longer include this line of code, so you will need to add it yourself
 
 		Please add import os to the top of your settings.py file.
+
+
+			• Go to heroku
+			• Deploy
+			• Connect to github
+			• Automatic deploy
+
+			• Now test it by changing something in the file
+				○ Settings ->
+					§ SECRET_KEY = 'os.environ.get('SECRET_KEY', django-insecure-p%y96lv245^_eq8dwg3a@$h%0m4snmay)-nzh@qix7s3kd#+m^')
+					§ ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
+					DATABASES = {
+						'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+					}
+			• Go to heroku dashboard
+				○ Settings
+					§ Reveal config vars
+					§ Key - HEROKU_HOSTNAME
+					  value - your webaddress (without https anf ending slash)
+			• Go to your gitpod template and make a change there
+				
+			• Push again, and it should update on github and heroku
+
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 	PART 10 - The development environment
 	'''''''''''''''''''''''''''''''''''''''''''''''''
