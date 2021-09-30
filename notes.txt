@@ -865,18 +865,58 @@ https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/c
 			unset PGHOSTADDR
 
 
+		Set up postgres through heroku resources
+
+		○ Go to resources on heroku
+			§ Search postgres
+			§ Keep it as hobby dev
+			§ Hit provision
+		○ Go to settings
+			§ Config vars
+				□ Heroku has given us a database to connect to from django
+		○ Check it in the gitpod terminal
+			Heroku addons
 		
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 	PART 5 - Connecting to our remote database
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 
+			• pip3 install dj_database_url
+				○ This allows us to parse the database url that Heroku created and get all the connection information out of it.
+			• Freeze your requirements again
+				○ pip3 freeze --local > requirements.txt
+			• Get remote database url
+				○ heroku config
+				
+				○ Go to settings.py
+					§ Go to databases
+					§ Copy and paste the original, then comment it out
+					§ Delete the value for default on your second database, and enter the following instead:
+						□ 'default': { dj_database_url.parse(postgres://mxtsdsaaiisdub:dd9904d3549070b488108f6b9cae3ef99db07c4c56297bd896908e7bdf65ff85@ec2-52-19-96-181.eu-west-1.compute.amazonaws.com:5432/dcbd6ih4f194uq)
+						□ Note that this is calling the dj database with the db url we just called above
+					§ Import dj_database_url at the top
+					
+			• Since we're using a different database, it doesn't have our models etc. So migrations have to be done
+					Python3 manage.py migrate
+
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 	PART 6 - Pushing our changes to github
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 
+		Push like normal
+		git add .
+		git commit -m "preparing for deployment"
+		git push
+
+		NOTE
+		Apparently our dbsqlite3 shouldn't have been pushed, but it's too late now
+		Add to gitignore file in future
+			*.sqlite3
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 	PART 7 - Attempting first deployment
 	'''''''''''''''''''''''''''''''''''''''''''''''''
+
+		
 
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 	PART 8 - fix ALLOWED_HOST and run project
