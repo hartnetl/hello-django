@@ -932,15 +932,33 @@ https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FST101+2021_T1/c
 
 		Push to heroku again(git push heroku master)
 
-
+		We still have a django error but we're making progress
+	
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 	PART 8 - fix ALLOWED_HOST and run project
 	'''''''''''''''''''''''''''''''''''''''''''''''''
+
+		We need to add our app to allowed host in settings.py to make sure users are coming from trusted sources
+
+		• Copy heroku link
+		• Go to settings.py
+			○ Find ALLOWED_HOSTS
+			○ Paste in your link, removing the https:
+				§ ALLOWED_HOSTS = ['hello-django-todo-app-by-laura.herokuapp.com']
+
+		Commit and push the change
 
 	''''''''''''''''''''''''''''''''''''
 	PART 9 - connecting heroku to github
 	''''''''''''''''''''''''''''''''''''
 
+		Change to Django versions requires an extra line of code
+		
+		In this video, the os.environ.get() method is introduced to call your environment variables stored in the Gitpod environment. In the version of django that this was recorded in, this works because Django still uses import os at the top of its settings.py file, importing the os module that you need to use.
+
+		Newer versions of Django no longer include this line of code, so you will need to add it yourself
+
+		Please add import os to the top of your settings.py file.
 	'''''''''''''''''''''''''''''''''''''''''''''''''
 	PART 10 - The development environment
 	'''''''''''''''''''''''''''''''''''''''''''''''''
